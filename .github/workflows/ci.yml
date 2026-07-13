@@ -1,0 +1,40 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [20]
+
+    env:
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm ci
+        run: |
+          npm ci
+      - name: typescheck
+        run: |
+          node --run typecheck
+      - name: npm format
+        run: |
+          node --run format
+      - name: npm lint
+        run: |
+          node --run lint
