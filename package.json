@@ -1,0 +1,169 @@
+{
+  "name": "@fannheyward/coc-ts",
+  "version": "0.0.1",
+  "description": "TypeScript 7+ language features for coc.nvim",
+  "keywords": [
+    "coc.nvim",
+    "javascript",
+    "lsp",
+    "typescript",
+    "typescript-7"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fannheyward/coc-ts.git"
+  },
+  "publisher": "fannheyward",
+  "files": [
+    "lib",
+    "README.md",
+    "package.json"
+  ],
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rolldown -c",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
+    "prepare": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "watch": "rolldown -c --watch"
+  },
+  "dependencies": {
+    "typescript": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.0",
+    "coc.nvim": "0.0.83-next.24",
+    "oxfmt": "^0.58.0",
+    "oxlint": "^1.73.0",
+    "rolldown": "^1.1.5"
+  },
+  "contributes": {
+    "rootPatterns": [
+      {
+        "filetype": "javascript",
+        "patterns": [
+          "package.json",
+          "jsconfig.json"
+        ]
+      },
+      {
+        "filetype": "javascriptreact",
+        "patterns": [
+          "package.json",
+          "jsconfig.json"
+        ]
+      },
+      {
+        "filetype": "javascript.jsx",
+        "patterns": [
+          "package.json",
+          "jsconfig.json"
+        ]
+      },
+      {
+        "filetype": "typescript",
+        "patterns": [
+          "package.json",
+          "tsconfig.json"
+        ]
+      },
+      {
+        "filetype": "typescriptreact",
+        "patterns": [
+          "package.json",
+          "tsconfig.json"
+        ]
+      },
+      {
+        "filetype": "typescript.tsx",
+        "patterns": [
+          "package.json",
+          "tsconfig.json"
+        ]
+      },
+      {
+        "filetype": "typescript.jsx",
+        "patterns": [
+          "package.json",
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "title": "Restart TypeScript language server",
+        "category": "ts",
+        "command": "ts.restart"
+      },
+      {
+        "title": "Go to Source Definition",
+        "category": "ts",
+        "command": "ts.goToSourceDefinition"
+      },
+      {
+        "title": "Sort Imports",
+        "category": "ts",
+        "command": "ts.sortImports"
+      },
+      {
+        "title": "Remove Unused Imports",
+        "category": "ts",
+        "command": "ts.removeUnusedImports"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "ts",
+      "properties": {
+        "ts.enable": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Enable TypeScript 7+ language features."
+        },
+        "ts.tsdk": {
+          "type": "string",
+          "default": "",
+          "scope": "resource",
+          "markdownDescription": "Path to a TypeScript 7+ package or its lib directory."
+        },
+        "ts.trace.server": {
+          "type": "string",
+          "default": "off",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "scope": "application",
+          "description": "Trace communication between coc.nvim and the TypeScript language server."
+        },
+        "ts.goMemLimit": {
+          "type": "string",
+          "default": "",
+          "scope": "window",
+          "pattern": "^[0-9]+(([KMGT]i)?B)?$",
+          "description": "Value for the GOMEMLIMIT environment variable, for example 2048MiB or 4GiB."
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascript.jsx",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescript.jsx",
+    "onLanguage:typescript.tsx",
+    "onLanguage:typescriptreact"
+  ],
+  "engines": {
+    "coc": "^0.0.80"
+  }
+}
