@@ -31,10 +31,10 @@ jobs:
           npm ci
       - name: typescheck
         run: |
-          node --run typecheck
+          npm run typecheck
       - name: npm format
         run: |
-          node --run format
+          npm run format
       - name: npm lint
         run: |
-          node --run lint
+          npm run lint
