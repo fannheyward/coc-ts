@@ -22,6 +22,7 @@ import {
   workspace,
 } from "coc.nvim";
 import { createConfigurationMiddleware } from "./configuration";
+import { registerHoverFeature } from "./hover";
 import { TypeScriptExecutable, resolveTypeScript } from "./typescript";
 
 const languageIds = [
@@ -314,7 +315,9 @@ function createLanguageClient(exe: TypeScriptExecutable, output: OutputChannel):
     middleware,
   };
 
-  return new LanguageClient("coc-ts", "TypeScript", serverOptions, clientOptions);
+  const client = new LanguageClient("coc-ts", "TypeScript", serverOptions, clientOptions);
+  registerHoverFeature(client);
+  return client;
 }
 
 function normalizeLanguageId(languageId: string): string {
