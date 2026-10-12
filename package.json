@@ -1,6 +1,6 @@
 {
   "name": "@fannheyward/coc-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TypeScript 7+ language features for coc.nvim",
   "keywords": [
     "coc.nvim",
